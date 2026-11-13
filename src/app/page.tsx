@@ -262,15 +262,46 @@ export default function PortfolioPage() {
           </div>
 
           {/* LAYER 2: 3-Column Content & Portrait Composition */}
-          {/* Mobile-first natural flow: Left info -> Big Picture -> Right info on mobile; 3 columns on desktop */}
+          {/* Mobile order: Portrait FIRST (order-1), then Name & Title (order-2), then Summary (order-3). Desktop preserves 3 columns */}
           <div className="relative mt-2 sm:mt-6 lg:-mt-16 xl:-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-end z-10">
             
-            {/* Left Column: Name & Title */}
+            {/* Center Column: Portrait Photograph (On mobile placed ABOVE Name & Title) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.1, delay: 0.1 }}
+              className="lg:col-span-6 xl:col-span-6 order-1 lg:order-2 flex justify-center items-end relative z-20"
+            >
+              <motion.div 
+                animate={{ y: [0, -5, 0] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative w-[280px] sm:w-[380px] md:w-[440px] lg:w-[480px] xl:w-[530px] flex items-end justify-center mt-2 sm:mt-0 lg:-mt-6 xl:-mt-8 mb-0"
+              >
+                {/* Back subtle pulsing glow matching the burgundy blazer */}
+                <motion.div 
+                  animate={{ opacity: [0.65, 0.85, 0.65] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-t from-[#8d1d3d]/70 via-[#721530]/35 to-transparent blur-3xl rounded-full transform -translate-y-4"
+                />
+                
+                <img
+                  src="/profile-v3.png"
+                  alt="Imthias Ahmed - AI/ML Engineer"
+                  className="relative z-10 w-full h-auto block object-contain object-bottom drop-shadow-[0_25px_50px_rgba(0,0,0,0.98)] filter contrast-[1.04]"
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* Left Column: Name & Title (order-2 on mobile, order-1 on desktop) */}
             <motion.div 
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.2 }}
-              className="lg:col-span-3 xl:col-span-3 order-1 lg:order-1 pt-4 lg:pt-0 pb-2 lg:pb-12 text-center lg:text-left relative z-20 flex flex-col items-center lg:items-start"
+              className="lg:col-span-3 xl:col-span-3 order-2 lg:order-1 pt-4 lg:pt-0 pb-2 lg:pb-12 text-center lg:text-left relative z-20 flex flex-col items-center lg:items-start"
             >
               <div className="border-l-0 lg:border-l-2 border-[#ecdccb]/80 pl-0 lg:pl-5 space-y-2">
                 <motion.h2 
@@ -314,37 +345,6 @@ export default function PortfolioPage() {
                   <span>VIEW PROJECTS</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
                 </a>
-              </motion.div>
-            </motion.div>
-
-            {/* Center Column: Portrait Photograph */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.1, delay: 0.1 }}
-              className="lg:col-span-6 xl:col-span-6 order-2 lg:order-2 flex justify-center items-end relative z-20"
-            >
-              <motion.div 
-                animate={{ y: [0, -5, 0] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="relative w-[280px] sm:w-[380px] md:w-[440px] lg:w-[480px] xl:w-[530px] flex items-end justify-center mt-2 sm:mt-0 lg:-mt-6 xl:-mt-8 mb-0"
-              >
-                {/* Back subtle pulsing glow matching the burgundy blazer */}
-                <motion.div 
-                  animate={{ opacity: [0.65, 0.85, 0.65] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-gradient-to-t from-[#8d1d3d]/70 via-[#721530]/35 to-transparent blur-3xl rounded-full transform -translate-y-4"
-                />
-                
-                <img
-                  src="/profile-v3.png"
-                  alt="Imthias Ahmed - AI/ML Engineer"
-                  className="relative z-10 w-full h-auto block object-contain object-bottom drop-shadow-[0_25px_50px_rgba(0,0,0,0.98)] filter contrast-[1.04]"
-                />
               </motion.div>
             </motion.div>
 
